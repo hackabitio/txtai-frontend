@@ -1,0 +1,24 @@
+{
+	"name": "txtai-frontend",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"lint": "eslint ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/kit": "next",
+		"eslint": "^8.16.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"sass": "^1.54.9",
+		"svelte": "^3.46.0",
+		"svelte-preprocess": "^4.10.7",
+		"vite": "^3.1.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@fontsource/fira-mono": "^4.5.0"
+	}
+}
