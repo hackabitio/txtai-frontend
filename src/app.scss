@@ -26,6 +26,10 @@ body {
 		var(--secondary-color) 10.45%,
 		var(--tertiary-color) 41.35%
 	);
+
+	* {
+		box-sizing: border-box;
+	}
 }
 
 body::before {

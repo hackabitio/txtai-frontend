@@ -1,22 +1,19 @@
-import { error } from '@sveltejs/kit';
-import { api } from './api';
+import { error } from '@sveltejs/kit'
+import { api } from './api'
 
-export const load = async ({ locals }) => {
-	// locals.userid comes from src/hooks.js
-	const response = await api('GET', `todos/${locals.userid}`);
+export const load = async () => {
+	const response = await api('GET', `count`)
 
-	if (response.status === 404) {
-		// user hasn't created a todo list.
-		// start with an empty array
+	if (response.status !== 200) {
 		return {
-			todos: []
-		};
+			count: []
+		}
 	}
 
 	if (response.status === 200) {
 		return {
-			todos: await response.json()
-		};
+			count: await response.json()
+		}
 	}
 
 	throw error(response.status);
