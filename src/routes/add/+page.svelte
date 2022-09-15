@@ -17,7 +17,7 @@
 	<div class="index-count">Indexed items: {count}</div>
 	<form
 		class="search-form"
-		action="/index?/add"
+		action="/add?/add"
 		method="post"
 		use:enhance={() => {
 			indexing = true
