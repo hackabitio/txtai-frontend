@@ -3,7 +3,7 @@
 	import { invalidateAll } from '$app/navigation'
 
 	export let data
-	console.log(data)
+	let searching = false
 	$: count = data.count
 	let searchResults = []
 </script>
@@ -22,6 +22,7 @@
 		method="post"
 		use:enhance={() => {
 			return ({ form, result }) => {
+				searching = true
 				if (result.type === 'success') {
 					searchResults = result.data
 					form.reset();
@@ -32,6 +33,11 @@
 	>
 		<input name="text" aria-label="Search" placeholder="Enter your query and enter" />
 	</form>
+	<div class="searching">
+		{#if searching && !searchResults.length}
+			<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+		{/if}
+	</div>
 	{#if searchResults.length}
 		<ul class="search-results">
 			{#each searchResults as sr}
@@ -82,4 +88,71 @@
 		}
 	}
 
+	.searching {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.lds-ellipsis {
+		display: inline-block;
+		position: relative;
+		width: 80px;
+		height: 80px;
+
+		div {
+			position: absolute;
+			top: 33px;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background: tomato;
+			animation-timing-function: cubic-bezier(0, 1, 1, 0);
+
+			&:nth-child(1) {
+				left: 8px;
+				animation: lds-ellipsis1 0.6s infinite;
+			}
+
+			&:nth-child(2) {
+				left: 8px;
+				animation: lds-ellipsis2 0.6s infinite;
+			}
+
+			&:nth-child(3) {
+				left: 32px;
+				animation: lds-ellipsis2 0.6s infinite;
+			}
+
+			&:nth-child(4) {
+				left: 56px;
+				animation: lds-ellipsis3 0.6s infinite;
+			}
+		}
+	}
+
+	@keyframes lds-ellipsis1 {
+		0% {
+			transform: scale(0);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+	@keyframes lds-ellipsis3 {
+		0% {
+			transform: scale(1);
+		}
+		100% {
+			transform: scale(0);
+		}
+	}
+	@keyframes lds-ellipsis2 {
+		0% {
+			transform: translate(0, 0);
+		}
+		100% {
+			transform: translate(24px, 0);
+		}
+	}
 </style>

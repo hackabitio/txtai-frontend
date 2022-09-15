@@ -25,7 +25,7 @@ export const actions = {
 		let indexData = form.get('indexData')
 		let dataArray = indexData.split(/\r?\n/);
 		dataArray = dataArray.map(text => ({id: crypto.randomUUID(), text: text}))
-		console.log(dataArray)
+
 		await api('POST', 'add', dataArray)
 		await api('GET', 'upsert')
 	}
