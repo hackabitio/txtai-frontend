@@ -3,6 +3,7 @@
 	import { invalidateAll } from '$app/navigation'
 
 	export let data
+	let indexing = false
 	$: count = data.count
 </script>
 
@@ -19,8 +20,10 @@
 		action="/index?/add"
 		method="post"
 		use:enhance={() => {
+			indexing = true
 			return ({ form, result }) => {
 				if (result.type === 'success') {
+					indexing = false
 					form.reset();
 					invalidateAll();
 				}
@@ -30,6 +33,11 @@
 		<textarea name="indexData" id="indexData" cols="50" rows="10"></textarea>
 		<button type="submit" class="submit" aria-label="Index items">Index items</button>
 	</form>
+	<div class="indexing">
+		{#if indexing}
+			<div class="loading"><div></div><div></div><div></div><div></div></div>
+		{/if}
+	</div>
 
 </div>
 
@@ -65,4 +73,9 @@
 		width: 100%;
 	}
 
+	.indexing {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 </style>

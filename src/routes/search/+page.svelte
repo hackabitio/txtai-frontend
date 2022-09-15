@@ -25,6 +25,7 @@
 				searching = true
 				if (result.type === 'success') {
 					searchResults = result.data
+					searching = false
 					form.reset();
 					invalidateAll();
 				}
