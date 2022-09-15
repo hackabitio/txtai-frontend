@@ -18,8 +18,8 @@
 			<li class:active={$page.url.pathname === '/'}>
 				<a href="/">Home</a>
 			</li>
-			<li class:active={$page.url.pathname === '/index'}>
-				<a href="/index">Index</a>
+			<li class:active={$page.url.pathname === '/add'}>
+				<a href="/add">Add</a>
 			</li>
 			<li class:active={$page.url.pathname === '/search'}>
 				<a href="/search">Search</a>
