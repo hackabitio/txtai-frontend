@@ -69,13 +69,6 @@
 		text-align: center;
 	}
 
-	form.text {
-		position: relative;
-		display: flex;
-		align-items: center;
-		flex: 1;
-	}
-
 	.index-count {
 		margin-bottom: 30px;
 	}
